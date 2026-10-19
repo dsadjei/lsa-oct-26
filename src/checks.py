@@ -39,3 +39,14 @@ date_bounds = appointments_df.select(
 )
 # Display the result 
 date_bounds.show()
+
+#checking data schema
+nationalcat_df.printSchema()
+
+#checking for dulicates
+total_rows = df.count()
+unique_rows = df.distinct().count()
+
+print(f"Total Rows: {total_rows}")
+print(f"Unique Rows: {unique_rows}")
+print(f"Duplicate Rows: {total_rows - unique_rows}")
