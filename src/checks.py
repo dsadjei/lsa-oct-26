@@ -24,7 +24,8 @@ appointments_df.select(
     countDistinct("hcp_type").alias("unique_hcpType"),
     countDistinct("appointment_month").alias("unique_month"),
     countDistinct("time_between_book_and_appointment").alias("unique_bktime"),
-    countDistinct("appointment_mode").alias("unique_mode")
+    countDistinct("appointment_mode").alias("unique_mode"),
+    countDistinct("count_of_appointments").alias("unique_counts")
 ).show()
 
 #display the distinct values of the selected columns for first 20 rows
@@ -50,3 +51,24 @@ unique_rows = df.distinct().count()
 print(f"Total Rows: {total_rows}")
 print(f"Unique Rows: {unique_rows}")
 print(f"Duplicate Rows: {total_rows - unique_rows}")
+
+#checking unique values in national categories
+nationalcat_df.select(
+    countDistinct("appointment_date").alias("unique_date"),
+    countDistinct("icb_ons_code").alias("unique_icb"),
+    countDistinct("sub_icb_location_name").alias("unique_subicb"),
+    countDistinct("service_setting").alias("unique_servsetting"),
+    countDistinct("context_type").alias("unique_context"),
+    countDistinct("national_category").alias("unique_cat"),
+    countDistinct("appointment_month").alias("unique_month"),
+    countDistinct("count_of_appointments").alias("unique_apps")
+    
+  ).show()
+
+#checking earliest and latest appointment_month dates
+natappoint_date_bounds = nationalcat_df.select(
+    min("appointment_month").alias("earliest_date"), 
+    max("appointment_month").alias("latest_date")
+)
+# Display the result 
+natappoint_date_bounds.show()
