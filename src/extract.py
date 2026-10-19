@@ -44,3 +44,14 @@ appointments_df = spark.read.csv("/content/drive/MyDrive/Personal/Professional D
 
 #loading national categories file into spark
 nationalcat_df = spark.read.csv("/content/drive/MyDrive/Personal/Professional Development/LSA Internship/raw/national_categories.csv", header=True, inferSchema=True)
+
+
+#actual duration file needs to be converted into csv before loading into Spark
+import pandas as pd
+# 1. Convert the Excel file to a CSV using pandas
+excel_df = pd.read_excel('/content/drive/MyDrive/Personal/Professional Development/LSA Internship/raw/actual_duration.csv.xlsx')
+excel_df.to_csv('actual_duration.csv', index=False)
+
+# 2. Load the CSV into Spark
+actual_duration_df = spark.read.csv('actual_duration.csv', header=True, inferSchema=True)
+df.show(5)
