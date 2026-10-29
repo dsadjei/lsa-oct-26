@@ -44,9 +44,9 @@ date_bounds.show()
 #checking data schema
 nationalcat_df.printSchema()
 
-#checking for dulicates
-total_rows = df.count()
-unique_rows = df.distinct().count()
+#checking for duplicates
+total_rows = nationalcat_df.count()
+unique_rows = nationalcat_df.distinct().count()
 
 print(f"Total Rows: {total_rows}")
 print(f"Unique Rows: {unique_rows}")
@@ -72,3 +72,6 @@ natappoint_date_bounds = nationalcat_df.select(
 )
 # Display the result 
 natappoint_date_bounds.show()
+
+#checking data schema of actual duration file
+duration_df.printSchema()
